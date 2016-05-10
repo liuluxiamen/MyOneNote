@@ -52,7 +52,18 @@
                               <label class="pos-rel">
                                 <input type="checkbox" class="ace" />
                                 <span class="lbl"></span>  </label>                            </td>
-                           <td>  <a href="/detail/<%= note._id %>"><%=note.title %></a>        </td>
+
+
+
+                           <% if(isMysql==1){ %>
+            <td>  <a href="/detail/<%= note.id %>"><%=note.title %></a>        </td>
+           
+              <%}%>     
+              <% if(isMysql==0){ %>
+            <td>  <a href="/detail/<%= note._id %>"><%=note.title %></a>        </td>
+           
+              <%}%>     
+                           
                            <td><%= note.tag%></td>
                             <td><%= note.author%></td>
                             
@@ -60,13 +71,26 @@
                              <td><%= note.content%></td>
                             <td>
                               <div class="hidden-sm hidden-xs action-buttons">
-                                                            </a>
+                                                           
+                              
+  <% if(isMysql==1){ %>
+           <a class="green" href="/detail/<%= note.id %>">
+                                  <i class="ace-icon fa fa-pencil bigger-130"></i>                                </a>
 
-                                <a class="green" href="/detail/<%= note._id %>">
+                                <a class="red" href="/delete/<%= note.id %>">
+                                  <i class="ace-icon fa fa-trash-o bigger-130"></i>                              </a>    
+           
+              <%}%>     
+              <% if(isMysql==0){ %>
+           <a class="green" href="/detail/<%= note._id %>">
                                   <i class="ace-icon fa fa-pencil bigger-130"></i>                                </a>
 
                                 <a class="red" href="/delete/<%= note._id %>">
-                                  <i class="ace-icon fa fa-trash-o bigger-130"></i>                              </a>                              </div>
+                                  <i class="ace-icon fa fa-trash-o bigger-130"></i>                              </a>    
+           
+              <%}%>     
+
+                     </div>
 
                               <div class="hidden-md hidden-lg">
                                 <div class="inline pos-rel">
